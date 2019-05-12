@@ -11,6 +11,11 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'authors-api/v1'], function ($router) {
+    $router->get('/all', 'AuthorController@index');
+    $router->post('/add', 'AuthorController@store');
+    $router->get('/get/{author}', 'AuthorController@show');
+    $router->put('/update/{author}', 'AuthorController@update');
+    $router->patch('/update/{author}', 'AuthorController@update');
+    $router->delete('/delete/{author}', 'AuthorController@destroy');
 });
